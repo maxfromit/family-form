@@ -19,4 +19,20 @@ const router = createRouter({
   ],
 })
 
+function translateRouteName(name: string): string {
+  const translations: Record<string, string> = {
+    home: 'Главная',
+    preview: 'Превью',
+  }
+  return translations[name] || name
+}
+
+router.afterEach(() => {
+  console.log('afterEach', router.currentRoute.value.name)
+  document.title =
+    router && router.currentRoute.value.name
+      ? `${translateRouteName(String(router.currentRoute.value.name))} – Информация о себе`
+      : 'Пусто'
+})
+
 export default router
