@@ -10,9 +10,11 @@ import { RouterLink, RouterView } from 'vue-router'
       >
         <img alt="Alef logo" class="text-black" src="@/assets/logo.svg" width="93" height="29" />
 
-        <nav class="grow flex flex-row items-center justify-center gap-[24px] text-gray-500">
-          <RouterLink to="/"> Форма</RouterLink>
-          <RouterLink to="/preview">Превью</RouterLink>
+        <nav
+          class="grow flex flex-row items-center justify-center gap-[24px] text-gray-500 active:text-primary/80"
+        >
+          <RouterLink activeClass="text-primary" to="/"> Форма</RouterLink>
+          <RouterLink activeClass="text-primary" to="/preview">Превью</RouterLink>
         </nav>
       </div>
     </header>
