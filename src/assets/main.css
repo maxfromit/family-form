@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+
+@theme {
+  /* extend the default theme with custom variables */
+  --color-primary: oklch(0.6993 0.1683 242.79);
+}
+
+button {
+  @apply cursor-pointer;
+}
