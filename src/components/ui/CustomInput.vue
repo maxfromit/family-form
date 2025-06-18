@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { checkStingOrNumberisNotEmpty } from '@/utils/isNotEmpty'
+import { checkStingOrNumberisNotEmpty } from '@/utils/checkStingOrNumberisNotEmpty'
 
 defineProps<{
   type: string

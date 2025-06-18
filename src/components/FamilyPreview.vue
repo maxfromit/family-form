@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Family, NameAndAge } from '@/types/familly'
-import { checkStingOrNumberisNotEmpty } from '@/utils/isNotEmpty'
+import { checkStingOrNumberisNotEmpty } from '@/utils/checkStingOrNumberisNotEmpty'
 import plural from 'plural-ru'
 
 defineProps<{
