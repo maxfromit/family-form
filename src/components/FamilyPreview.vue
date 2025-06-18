@@ -32,7 +32,6 @@ const formatNameAndAge = (name: NameAndAge['name'], age: NameAndAge['age']) => {
       <div class="text-lg font-bold">
         {{ formatNameAndAge(family.name, family.age) }}
       </div>
-      r
     </div>
 
     <div class="flex flex-col gap-[20px]">
