@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { checkStingOrNumberisNotEmpty } from '@/utils/isNotEmpty'
+
 defineProps<{
   type: string
   placeholder: string
@@ -10,7 +12,7 @@ const [model, modifiers] = defineModel('model')
 console.log(modifiers) // { capitalize: true }
 
 const isFocused = ref(false)
-const hasValue = computed(() => !!model.value && model.value !== '')
+const hasValue = computed(() => checkStingOrNumberisNotEmpty(model.value))
 const floatLabel = computed(() => isFocused.value || hasValue.value)
 </script>
 
