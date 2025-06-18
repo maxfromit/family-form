@@ -12,12 +12,12 @@ function isNotEmpty(value: string | number | null | undefined) {
   return false
 }
 
-const ageLabel = (age: number) => {
-  if (!age || typeof age !== 'number') return ''
+const ageLabel = (age: number | null | undefined) => {
+  if (typeof age !== 'number' || isNaN(age)) return ''
   return plural(age, 'год', 'года', 'лет')
 }
 
-const showData = (name: NameAndAge['name'], age: NameAndAge['age']) => {
+const formatNameAndAge = (name: NameAndAge['name'], age: NameAndAge['age']) => {
   return !isNotEmpty(name) && !isNotEmpty(age)
     ? 'Имя и возраст не введены'
     : `${isNotEmpty(name) ? name : 'Имя не введено'}, ${isNotEmpty(age) ? `${age} ${ageLabel(age)}` : 'возраст не введен'}`
@@ -30,8 +30,9 @@ const showData = (name: NameAndAge['name'], age: NameAndAge['age']) => {
       <div class="text-lg font-medium">Персональные данные</div>
 
       <div class="text-lg font-bold">
-        {{ showData(family.name, family.age) }}
+        {{ formatNameAndAge(family.name, family.age) }}
       </div>
+      r
     </div>
 
     <div class="flex flex-col gap-[20px]">
@@ -42,7 +43,7 @@ const showData = (name: NameAndAge['name'], age: NameAndAge['age']) => {
         :key="index"
         class="p-4 self-start bg-gray-100 rounded text-lg font-bold"
       >
-        {{ showData(child.name, child.age) }}
+        {{ formatNameAndAge(child.name, child.age) }}
       </div>
     </div>
   </div>
