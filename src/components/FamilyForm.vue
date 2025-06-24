@@ -2,20 +2,17 @@
 import { ref } from 'vue'
 import CustomInput from '@/components/ui/CustomInput.vue'
 import PlusIcon from '@/components/icons/PlusIcon.vue'
-import type { Family, NameAndAge } from '@/types/familly'
+import type { Family } from '@/types/familly'
+import { defaultPerson, defaultFamily } from '@/consts/defaultFamiy'
 
 const props = defineProps<{
   family: Family | null
 }>()
 
-function createDefaultFamily(): Family {
-  return { ...({} as Family), children: [] as NameAndAge[] }
-}
-
-const formData = ref<Family>(props.family ?? createDefaultFamily())
+const family = ref<Family>(props.family ?? { ...defaultFamily })
 
 function removeChild(index: number) {
-  formData.value.children.splice(index, 1)
+  family.value.children.splice(index, 1)
 }
 
 const showBanner = ref(false)
@@ -25,7 +22,7 @@ const emit = defineEmits<{
 }>()
 
 function handleSubmit() {
-  emit('submit', formData.value)
+  emit('submit', family.value)
   showBanner.value = true
   setTimeout(() => {
     showBanner.value = false
@@ -39,9 +36,9 @@ function handleSubmit() {
       <div class="text-lg font-medium">Персональные данные</div>
 
       <div class="flex flex-col gap-[10px]">
-        <CustomInput v-model:model="formData.name" type="text" placeholder="Имя" />
+        <CustomInput v-model:model="family.name" type="text" placeholder="Имя" />
 
-        <CustomInput v-model:model="formData.age" type="number" placeholder="Возраст" />
+        <CustomInput v-model:model="family.age" type="number" placeholder="Возраст" />
       </div>
     </div>
 
@@ -50,9 +47,9 @@ function handleSubmit() {
         <div class="text-lg font-medium">Дети (макс. 5)</div>
 
         <button
-          v-if="!formData.children || formData.children?.length < 5"
+          v-if="!family.children || family.children?.length < 5"
           class="py-2 px-4 border-2 rounded-full border-primary text-primary hover:bg-gray-100 hover:text-primary/80 transition-colors active:bg-gray-50"
-          @click="formData.children?.push({} as NameAndAge)"
+          @click="family.children?.push({ ...defaultPerson })"
         >
           <div class="flex flex-row justify-center items-center gap-1 md:gap-2">
             <PlusIcon :width="18" :height="18" />
@@ -62,7 +59,7 @@ function handleSubmit() {
       </div>
 
       <div
-        v-for="(child, index) in formData.children"
+        v-for="(child, index) in family.children"
         :key="index"
         class="flex flex-row gap-[20px] justify-between"
       >
