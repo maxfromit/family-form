@@ -2,9 +2,9 @@
 import FamilyPreview from '@/components/FamilyPreview.vue'
 import { useFamilyStore } from '@/stores/family'
 
-const { formData } = useFamilyStore()
+const { family } = useFamilyStore()
 </script>
 
 <template>
-  <FamilyPreview :family="formData" />
+  <FamilyPreview :family="family" />
 </template>

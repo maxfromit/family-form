@@ -1,5 +1,5 @@
-export type NameAndAge = { name: string; age: number }
+export type DefaultPerson = { name: string | null; age: number | null }
 
-export type Family = NameAndAge & {
-  children: NameAndAge[]
+export type Family = DefaultPerson & {
+  children: DefaultPerson[]
 }

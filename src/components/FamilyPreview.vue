@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { Family, NameAndAge } from '@/types/familly'
-import { checkStingOrNumberisNotEmpty } from '@/utils/checkStingOrNumberisNotEmpty'
+import type { Family, DefaultPerson } from '@/types/familly'
+import { checkStringOrNumberisNotEmpty } from '@/utils/checkStingOrNumberisNotEmpty'
 import plural from 'plural-ru'
 
 defineProps<{
@@ -12,10 +12,10 @@ const ageLabel = (age: number | null | undefined) => {
   return plural(age, 'год', 'года', 'лет')
 }
 
-const formatNameAndAge = (name: NameAndAge['name'], age: NameAndAge['age']) => {
-  return !checkStingOrNumberisNotEmpty(name) && !checkStingOrNumberisNotEmpty(age)
+const formatNameAndAge = (name: DefaultPerson['name'], age: DefaultPerson['age']) => {
+  return !checkStringOrNumberisNotEmpty(name) && !checkStringOrNumberisNotEmpty(age)
     ? 'Имя и возраст не введены'
-    : `${checkStingOrNumberisNotEmpty(name) ? name : 'Имя не введено'}, ${checkStingOrNumberisNotEmpty(age) ? `${age} ${ageLabel(age)}` : 'возраст не введен'}`
+    : `${checkStringOrNumberisNotEmpty(name) ? name : 'Имя не введено'}, ${checkStringOrNumberisNotEmpty(age) ? `${age} ${ageLabel(age)}` : 'возраст не введен'}`
 }
 </script>
 

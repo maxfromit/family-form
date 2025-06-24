@@ -2,9 +2,9 @@
 import FamilyForm from '@/components/FamilyForm.vue'
 import { useFamilyStore } from '@/stores/family'
 
-const { formData, setFormData } = useFamilyStore()
+const { family, setFamily } = useFamilyStore()
 </script>
 
 <template>
-  <FamilyForm :family="formData" @submit="setFormData" />
+  <FamilyForm :family="family" @submit="setFamily" />
 </template>
